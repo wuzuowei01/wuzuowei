@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper   
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"   
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.bw.mapper.GoodsMapper">
+
+	<!-- 列表 -->
+	<select id="list" resultType="GoodsBean" >
+		SELECT * FROM goods JOIN brand ON goods.`brand_bid`=brand.`bid` JOIN gk ON goods.`gk_kid`=gk.`kid`
+	</select>
+	
+	<!-- 删除 -->
+	<delete id="Del" parameterType="int" >
+		delete from goods where gid=#{gid};
+	</delete>
+	
+	<!-- 添加 -->
+	<insert id="Add" parameterType="GoodsBean" >
+		insert into goods(gname,ggname,brand_bid,gk_kid,size,price,number,bq,img) values(#{gname},#{ggname},#{brand_bid},#{gk_kid},#{size},#{price},#{number},#{bq},#{img});
+	</insert>
+	
+</mapper>
